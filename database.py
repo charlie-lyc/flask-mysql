@@ -6,7 +6,7 @@ config = {
     # 'host': 'mysql://b55f6c362f76c3:96860c7c@us-cdbr-east-04.cleardb.com/heroku_f92a588680a967f',
     'host': 'us-cdbr-east-04.cleardb.com',
     'database': 'heroku_f92a588680a967f',
-    'user': 'b55f6c362f76c3',
+    'user': 'ofetwo@gmail.com',
     'password': '96860c7c',
     ##########################
     # 'host': 'localhost',
