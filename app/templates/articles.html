@@ -9,14 +9,17 @@
             {% for article in articles %}
                 <li class="list-group-item">
                     <h3>
-                        <a href="articles/{{article.id}}">{{ article.title }}</a>
+                        <!-- <a href="articles/{{ article.id }}">{{ article.title }}</a> -->
+                        <a href="articles/{{ article[0] }}">{{ article[1] }}</a>
                     </h3>
                     <!-- 내용에 태그가 포함될 경우 필터 safe 또는 striptags 이용 : XSS 방지 -->
-                    <p>{{ article.body[0:100] | striptags }} ...</p> 
+                    <!-- <p> 사이에 들어가니 에러발생해서 일단 밖으로 꺼냄 ...</p> -->
+                    <p>{{ article[3][0:100] | striptags }} ...</p> 
                 </li>
             {% endfor %}
         </ul>
-
     </div>
 
 {% endblock body %}
+
+<!-- <p>{{ article.body[0:100] | striptags }} ...</p> -->

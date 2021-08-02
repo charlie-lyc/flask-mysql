@@ -1,2 +1,22 @@
-# config.py
-data.py
+# config.py # 내 Repository로 보낼 때는 포함하지 않고, Deploy 때는 포함
+# database.py  # 내 Repository로 보낼 때는 포함하지 않고, Deploy 때는 포함
+# data.py
+
+
+lib/
+
+#################
+venv/
+
+*.pyc
+__pycache__/
+
+instance/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/

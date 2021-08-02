@@ -23,14 +23,12 @@
             </tr>
             {% for article in articles %}
                 <tr>
-                    <td style="text-align: left"><a href="/articles/{{ article.id }}">{{ article.title }}</a></td>
-                    <td>{{ article.created_date }}</td>
-                    <td>{{ article.author }}</td>
+                    <td style="text-align: left"><a href="/articles/{{ article[0] }}">{{ article[1] }}</a></td>
+                    <td>{{ article[4] }}</td>
+                    <td>{{ article[2] }}</td>
                     <td>
-                        <a class="btn btn-warning btn-sm" type="button" href="/edit_article/{{ article.id }}">Edit &gt;&gt;</a>&nbsp;
-                        <!-- My Solution -->
-                        <a class="btn btn-danger btn-sm" type="button" href="/delete_article/{{ article.id }}">Delete</a>
-
+                        <a class="btn btn-warning btn-sm" type="button" href="/edit_article/{{ article[0] }}">Edit&gt;&gt;</a>
+                        <a class="btn btn-danger btn-sm" type="button" href="/delete_article/{{ article[0] }}">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -38,6 +36,16 @@
     </div>
 
 {% endblock body %}
+
+                <!-- 블럭 내에서 커멘트 처리시 에러가 발생하여 일단 밖으로 꺼내놓음 -->
+                <tr>
+                    <td style="text-align: left"><a href="/articles/{{ article.id }}">{{ article.title }}</a></td>
+                    <td>{{ article.created_date }}</td>
+                    <td>{{ article.author }}</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" type="button" href="/edit_article/{{ article.id }}">Edit &gt;&gt;</a>&nbsp;
+                        <!-- My Solution -->
+                        <a class="btn btn-danger btn-sm" type="button" href="/delete_article/{{ article.id }}">Delete</a>
 
                         <!-- Instructor's Solution : 하지만 form.csrf 적용이 되지 않아서 위의 My Solution으로 대체 -->
                         <!-- request.form 을 빈 상태로 보낼 수 없어 hidden상태의 input 태그를 임의로 보냄 : 다만 브라우저상에서 보이지는 않음 -->
@@ -56,3 +64,5 @@
                                 <input type="submit" value="Delete" class="btn btn-danger btn-sm">
                             </form> 
                         -->
+                    </td>
+                </tr>
