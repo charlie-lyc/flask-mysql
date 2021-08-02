@@ -1,6 +1,8 @@
 # config.py # 내 Repository로 보낼 때는 포함하지 않고, Deploy 때는 포함
 # database.py  # 내 Repository로 보낼 때는 포함하지 않고, Deploy 때는 포함
-# data.py
+data.py
+
+lib/
 
 #################
 venv/
