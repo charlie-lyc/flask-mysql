@@ -4,90 +4,28 @@ from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect, CSRFError
 ###########################################################
 # from data import Articles
-# from config import *
-# from forms import RegisterForm, LoginForm, ArticleForm
-# from decorators import login_required
-###########################################################
-
-from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, PasswordField, validators
-
-class RegisterForm(FlaskForm):
-    name = StringField('Name', [
-        validators.DataRequired(), 
-        validators.Length(min=3, max=100) 
-    ])
-    email = StringField('Email', [
-        validators.DataRequired(), 
-        validators.Length(min=5, max=100) 
-    ])
-    username = StringField('Username', [
-        validators.DataRequired(), 
-        validators.Length(min=3, max=100) 
-    ])
-    password = StringField('Password', [
-        validators.DataRequired(),
-        validators.Length(min=5, max=100)
-    ])
-    confirm = PasswordField('Confirm password', [
-        validators.DataRequired(),
-        validators.EqualTo('password', message='Confirmation NOT matched to password')
-    ])
-
-class LoginForm(FlaskForm):
-    email = StringField('Email', [
-        validators.DataRequired(), 
-        validators.Length(min=5, max=100) 
-    ])
-    password = StringField('Password', [
-        validators.DataRequired(),
-        validators.Length(min=5, max=100)
-    ])
-
-class ArticleForm(FlaskForm):
-    title = StringField('Title', [
-        validators.DataRequired(), 
-        validators.Length(min=3, max=255) 
-    ])
-    body = TextAreaField('Body', [
-        # validators.DataRequired(), # <textarea> 에서 required 속성이 POST 메서드 실행시 에러를 발생시킴 !!!
-        validators.Length(min=10) 
-    ])
-
-###########################################################
-
-from functools import wraps
-from flask import session, flash, redirect, url_for, request
-
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if 'logged_in' not in session:
-            flash('You have NOT permission. Please log in.', 'danger')
-            return redirect(url_for('login', next=request.url))
-        return f(*args, **kwargs)
-    return decorated_function
+from config import *
+from forms import RegisterForm, LoginForm, ArticleForm
+from decorators import login_required
 
 ###########################################################
 
 app = Flask(__name__)
 ### Config Secret Key
-app.config['SECRET_KEY'] = 'flask_app'
+app.config['SECRET_KEY'] = SECRET_KEY
+
+###########################################################
 
 ### Config MySQL : Reference from https://github.com/alexferl/flask-mysqldb
-# app.config['MYSQL_HOST'] = MYSQL_HOST
-# app.config['MYSQL_USER'] = MYSQL_USER
-# app.config['MYSQL_PASSWORD'] = MYSQL_PASSWORD
-# app.config['MYSQL_DB'] = MYSQL_DB
-# app.config['MYSQL_CURSORCLASS'] = MYSQL_CURSORCLASS
-#####################################################
-app.config['MYSQL_HOST'] = 'mysql://b55f6c362f76c3:96860c7c@us-cdbr-east-04.cleardb.com/heroku_f92a588680a967f'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'charlie-lyc'
-app.config['MYSQL_DB'] = 'flask_app'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+app.config['MYSQL_HOST'] = MYSQL_HOST
+app.config['MYSQL_USER'] = MYSQL_USER
+app.config['MYSQL_PASSWORD'] = MYSQL_PASSWORD
+app.config['MYSQL_DB'] = MYSQL_DB
+app.config['MYSQL_CURSORCLASS'] = MYSQL_CURSORCLASS
 ### Init MySQL
 mysql = MySQL(app)
+
+###########################################################
 
 ### Config WTF CSRF : Reference from https://flask-wtf.readthedocs.io/en/0.15.x/csrf/
 ### WTF_CSRF 를 이용할 경우 앱을 실행하기 전에 app.secret_key 설정이 필요하고 WTF_CSRF_SECRET_KEY 를 별도로 정할 수도 있음 
@@ -99,17 +37,19 @@ app.config['WTF_CSRF_SECRET_KEY'] = 'flask-app'
 ### Init CSRF Protection
 csrf = CSRFProtect(app)
 
+###########################################################
+
 ### Fetch Articles from Mockup Data
 # Articles = Articles()
 
-###########################################################
-
+######################################################################################################################
+######################################################################################################################
 @app.route('/')
 @app.route('/index')
 def index():
     # return 'Hello World!'
     # return '<h1>Hello World!<h1>'
-    return render_template('index.html', name='Flask App')
+    return render_template('index.html', name='Flask-MySQL App')
 
 @app.route('/home')
 def home():
@@ -321,11 +261,11 @@ def delete_article(id):
 def handle_csrf_error(e):
     return render_template('csrf_error.html', reason=e.description), 400
 
-###########################################################
+######################################################################################################################
+######################################################################################################################
 ### 설치시 변경
 # if __name__ == '__main__':
-#     app.config['SECRET_KEY'] = SECRET_KEY # app.sercret_key 설정
-
-#     # app.debug = True
-#     # app.run()
-#     app.run(debug=True)
+    # app.debug = True
+    # app.run()
+    ##################
+    # app.run(debug=True) 
