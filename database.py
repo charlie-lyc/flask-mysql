@@ -6,11 +6,11 @@ config = {
     ### mysql://b55f6c362f76c3:96860c7c@us-cdbr-east-04.cleardb.com/heroku_f92a588680a967f
     'username': 'b55f6c362f76c3',
     'password': '96860c7c',
-    'hostname': 'us-cdbr-east-04.cleardb.com',
+    'host': 'us-cdbr-east-04.cleardb.com',
     'database_name': 'heroku_f92a588680a967f',
     ##########################
-    # 'host': 'localhost',
     # 'user': 'root',
+    # 'host': 'localhost',
     # 'password': 'charlie-lyc',
     # 'database': 'flask_mysql', # 처음에 포함하지 않았다가, 데이터베이스가 생성된 이후에 포함 : create database if not exists {} default character set utf8;
 }
