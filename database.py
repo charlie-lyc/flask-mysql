@@ -7,6 +7,7 @@ config = {
     'host': 'us-cdbr-east-04.cleardb.com',
     'user': 'b55f6c362f76c3',
     'password': '96860c7c',
+    'database': 'heroku_f92a588680a967f'
     ##########################
     # 'host': 'localhost',
     # 'user': 'root',
