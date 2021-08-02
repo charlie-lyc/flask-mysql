@@ -71,6 +71,8 @@ def login_required(f):
 ###########################################################
 
 app = Flask(__name__)
+### Config Secret Key
+app.config['SECRET_KEY'] = 'flask_app'
 
 ### Config MySQL : Reference from https://github.com/alexferl/flask-mysqldb
 # app.config['MYSQL_HOST'] = MYSQL_HOST
