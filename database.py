@@ -5,7 +5,7 @@ config = {
     ### 설치시 변경
     # 'host': 'mysql://b55f6c362f76c3:96860c7c@us-cdbr-east-04.cleardb.com/heroku_f92a588680a967f',
     'host': 'us-cdbr-east-04.cleardb.com',
-    'user': 'b55f6c362f76c3',
+    'user': 'ofetwo@gmail.com',
     'password': '96860c7c',
     ##########################
     # 'host': 'localhost',
