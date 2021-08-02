@@ -10,7 +10,7 @@ config = {
     ##########################
     # 'host': 'localhost',
     # 'user': 'root',
-    'password': 'charlie-lyc',
+    # 'password': 'charlie-lyc',
     ##########################
     # 'database': 'flask_mysql' # 처음에 포함하지 않았다가, 데이터베이스가 생성된 이후에 포함 : create database if not exists {} default character set utf8;
 }
