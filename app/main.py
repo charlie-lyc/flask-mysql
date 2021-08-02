@@ -31,12 +31,12 @@ app.config['SECRET_KEY'] = SECRET_KEY
 ###########################################################
 ### mysql-connector-python 이용
 
-from db_setup import create_database, create_tables
+from db_setup import create_tables#, create_database 
 from database import db
 
 ######### 최초 한번만 실행하고 더 이상 실행되지 않게!!! #############
 ### 설치 후 커멘트 처리
-create_database()
+# create_database()
 create_tables()
 ###########################################################
 

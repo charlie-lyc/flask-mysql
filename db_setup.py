@@ -2,7 +2,8 @@ import mysql.connector
 from mysql.connector import errorcode
 from database import db
 
-DB_NAME  = 'flask_mysql'
+# DB_NAME  = 'flask_mysql'
+DB_NAME  = 'heroku_f92a588680da967f'
 
 TABLES = {}
 TABLES['users'] = (
@@ -24,11 +25,11 @@ TABLES['articles'] = (
 )
 
 
-def create_database():
-    cur = db.cursor()
-    cur.execute('create database if not exists {} default character set utf8;'.format(DB_NAME))
-    print('Database {} created!'.format(DB_NAME))
-    cur.close()
+# def create_database():
+#     cur = db.cursor()
+#     cur.execute('create database if not exists {} default character set utf8;'.format(DB_NAME))
+#     print('Database {} created!'.format(DB_NAME))
+#     cur.close()
 
 def create_tables():
     cur = db.cursor()
