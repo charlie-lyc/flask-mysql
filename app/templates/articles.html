@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div>
+        <h1 style="display: inline-block;">Articles</h1>
+        <br>
+        <ul class="list-group">
+            {% for article in articles %}
+                <li class="list-group-item">
+                    <h3>
+                        <a href="articles/{{article.id}}">{{ article.title }}</a>
+                    </h3>
+                    <!-- 내용에 태그가 포함될 경우 필터 safe 또는 striptags 이용 : XSS 방지 -->
+                    <p>{{ article.body[0:100] | striptags }} ...</p> 
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock body %}

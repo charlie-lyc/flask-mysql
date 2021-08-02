@@ -1,0 +1,38 @@
+<!-- Reference from : https://flask.palletsprojects.com/en/2.0.x/patterns/wtforms/?highlight=render_field -->
+<!-- Reference from : https://flask-wtf.readthedocs.io/en/0.15.x/csrf/ -->
+
+{% extends 'layout.html' %}
+{% from 'includes/_formhelpers.html' import render_field %}
+
+{% block body %}
+    
+    <!-- 
+        wtforms를 이용하여 작성하기에 macro를 이용하여 render_field()를 이용하는 것이 번거로운듯 보이나
+        재사용의 편리함과 form.csrf_token을 이용할 수 있다는 것이 큰 장점임
+    -->
+    <div>
+        <h1>Register</h1>
+        <form action="/register" method="POST">
+            {{ form.csrf_token }} <!-- 중요!!! -->
+            <dl>
+                <div class="form-group">
+                    {{ render_field(form.name, class="form-control", type="text") }}
+                </div>
+                <div class="form-group">
+                    {{ render_field(form.email, class="form-control", type="email") }}
+                </div>
+                <div class="form-group">
+                    {{ render_field(form.username, class="form-control", type="text") }}
+                </div>
+                <div class="form-group">
+                    {{ render_field(form.password, class="form-control", type="password") }}
+                </div>
+                <div class="form-group">
+                    {{ render_field(form.confirm, class="form-control", type="password") }}
+                </div>
+            </dl>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+    
+{% endblock body %}

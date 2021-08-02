@@ -1,0 +1,44 @@
+<!-- Reference from :  https://flask-wtf.readthedocs.io/en/0.15.x/csrf/ -->
+
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div>
+        <h1>Edit Article</h1>
+        <form action="/edit_article/{{ article.id }}" method="POST"> <!-- <form> 의 method 에는 GET, POST 뿐 -->
+            {{ form.csrf_token }} <!-- 중요!!! -->
+            <div class="form-group">
+                <label for="title"><strong>Title</strong></label>
+                <br>
+                <input type="text" name="title" class="form-control" value="{{ article.title }}">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="body"><strong>Body</strong></label>
+                <br>
+                <!-- CKEditor 연동 : id="editor" -->
+                <!-- <textarea> 에서 required 속성이 POST 메서드 실행시 에러를 발생시킴 !!! -->
+                <textarea id="editor" name="body" class="form-control" cols="30" rows="10">
+                    {{ article.body }}
+                </textarea>
+            </div>
+            <br>
+            <input type="submit" class="btn btn-info" value="Modify">&nbsp;
+            <a class="btn btn-danger" type="button" href="/delete_article/{{ article.id }}">Delete</a>
+        </form>
+    </div>
+
+
+    <!-- Create CKEditor -->
+    <script type="text/javascript">
+        ClassicEditor.create(document.querySelector('#editor'))
+            .then(editor => {
+                // console.log(editor);
+            }).catch(error => {
+                console.error(error);
+            });
+    </script>
+
+{% endblock body %}
+

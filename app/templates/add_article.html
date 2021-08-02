@@ -1,0 +1,39 @@
+<!-- Reference from : https://flask.palletsprojects.com/en/2.0.x/patterns/wtforms/?highlight=render_field -->
+<!-- Reference from : https://flask-wtf.readthedocs.io/en/0.15.x/csrf/ -->
+
+{% extends 'layout.html' %}
+{% from 'includes/_formhelpers.html' import render_field %}
+
+{% block body %}
+
+    <div>
+        <h1>Add Article</h1>
+        <form action="/add_article" method="POST">
+            {{ form.csrf_token }} <!-- 중요!!! -->
+            <dl>
+                <div class="form-group">
+                    {{ render_field(form.title, class="form-control") }}
+                </div>
+                <br>
+                <div class="form-group">
+                    <!-- CKEditor 연동 : id="editor" -->
+                    <!-- <textarea> 에서 required 속성이 POST 메서드 실행시 에러를 발생시킴 !!! -->
+                    {{ render_field(form.body, class="form-control", id="editor") }}
+                </div>
+            </dl>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+
+
+    <!-- Create CKEditor -->
+    <script type="text/javascript">
+        ClassicEditor.create(document.querySelector('#editor'))
+            .then(editor => {
+                // console.log(editor);
+            }).catch(error => {
+                console.error(error);
+            });
+    </script>
+
+{% endblock body %}

@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div>
+        <h1>{{ article.title }}</h1>
+        <small>Written by {{ article.author }} on {{ article.created_date }}</small>
+        <hr>
+        <!-- 내용에 태그가 포함될 경우 필터 safe 또는 striptags 이용 : XSS 방지 -->
+        <p>{{ article.body | safe }}</p>
+        <a class="btn btn-primary" type="button" href="/articles">&lt;&lt; Articles</a>
+        {% if session.username == article.author %}
+            <a class="btn btn-warning" type="button" href="/edit_article/{{ article.id }}">Edit &gt;&gt;</a>
+        {% endif %}
+    </div>
+    
+{% endblock body %}

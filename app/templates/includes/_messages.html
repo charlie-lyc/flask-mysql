@@ -1,0 +1,22 @@
+<!-- Reference from : https://flask.palletsprojects.com/en/2.0.x/patterns/flashing/?highlight=flash%20message#message-flashing -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <!-- <ul class="falshes"> -->
+            {% for category, message in messages %}
+                <!-- <li style="list-style: none;" class="alert alert-{{ category }}">{{ message }}</li> -->
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        <!-- </ul> -->
+    {% endif %}
+{% endwith %}
+
+
+{% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+
+{% if msg %}
+    <div class="alert alert-warning">{{ msg }}</div>
+{% endif %}
