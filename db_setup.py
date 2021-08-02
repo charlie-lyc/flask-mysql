@@ -3,7 +3,7 @@ from mysql.connector import errorcode
 from database import db
 
 # DB_NAME  = 'flask_mysql'
-DB_NAME  = 'heroku_f92a588680da967f'
+DB_NAME  = 'heroku_f92a588680a967f'
 
 TABLES = {}
 TABLES['users'] = (

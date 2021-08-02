@@ -4,10 +4,10 @@ import mysql.connector
 config = {
     ### 설치시 변경
     ### mysql://b55f6c362f76c3:96860c7c@us-cdbr-east-04.cleardb.com/heroku_f92a588680a967f
-    'username': 'b55f6c362f76c3',
+    'user': 'b55f6c362f76c3',
     'password': '96860c7c',
     'host': 'us-cdbr-east-04.cleardb.com',
-    'database': 'heroku_f92a588680da967f',
+    'database': 'heroku_f92a588680a967f',
     ##########################
     # 'user': 'root',
     # 'password': 'charlie-lyc',
