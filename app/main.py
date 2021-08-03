@@ -71,6 +71,7 @@ def about():
 
 @app.route('/articles')
 def articles():
+    db.reconnect() ### 추가 ###
     # cur = mysql.connection.cursor()
     cur = db.cursor()
     # result = cur.execute('select * from articles;')
@@ -98,6 +99,7 @@ def article(id):
     #     if art['id'] == int(id): 
     #         found_article = art
     ######################################################################
+    db.reconnect() ### 추가 ###
     # cur = mysql.connection.cursor()
     cur = db.cursor()
     cur.execute('select * from articles where id=%s', [id])
@@ -119,6 +121,7 @@ def register():
         # 1. cur.execute()를 이용시 f'{}'는 허용되지 않음
         # 2. cur.execute()를 이용시 MySQL shell에서 허용되는 것처럼 소문자 사용 가능
         ###
+        db.reconnect() ### 추가 ###
         ### email 중복 가입 방지 : 로그인시 이용
         # cur = mysql.connection.cursor()
         cur = db.cursor()
@@ -161,6 +164,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email'] # Form 클래스를 이용하지 않을 경우 '''request.form[name]''' 으로도 접근 가능 
         password_candidate = request.form['password']
+        db.reconnect() ### 추가 ###
         # cur = mysql.connection.cursor()
         cur = db.cursor()
         # result = cur.execute('select * from users where email=%s;', [email])
@@ -200,6 +204,7 @@ def login():
 @app.route('/dashboard')
 @login_required
 def dashboard():
+    db.reconnect() ### 추가 ###
     # cur = mysql.connection.cursor()
     cur = db.cursor()
     # result = cur.execute('select * from articles where author=%s;', [session['username']])
@@ -229,6 +234,7 @@ def add_article():
     if request.method == 'POST' and article_form.validate():
         title = article_form.title.data
         body = article_form.body.data
+        db.reconnect() ### 추가 ###
         # cur = mysql.connection.cursor()
         cur = db.cursor()
         cur.execute('insert into articles (author, title, body) values (%s, %s, %s);', [session['username'], title, body])
@@ -244,6 +250,7 @@ def add_article():
 def edit_article(id):
     ### form.csrf_token 이용을 위해 필요 
     edit_form = ArticleForm(request.form)
+    db.reconnect() ### 추가 ###
     # cur = mysql.connection.cursor()
     cur = db.cursor()
     cur.execute('select * from articles where id=%s', [id])
@@ -273,6 +280,7 @@ def edit_article(id):
 @app.route('/delete_article/<id>')
 @login_required
 def delete_article(id):
+    db.reconnect() ### 추가 ###
     # cur = mysql.connection.cursor()
     cur = db.cursor()
     cur.execute('select * from articles where id=%s', [id])
