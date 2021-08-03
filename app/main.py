@@ -31,7 +31,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 ###########################################################
 ### mysql-connector-python 이용
 
-# from db_setup import create_tables#, create_database 
+# from db_setup import create_tables #, create_database 
 from database import db
 
 ######### 최초 한번만 실행하고 더 이상 실행되지 않게!!! #############
@@ -56,6 +56,7 @@ csrf = CSRFProtect(app)
 ######################################################################################################################
 ######################################################################################################################
 @app.route('/')
+@app.route('/index')
 def index():
     # return 'Hello World!'
     # return '<h1>Hello World!<h1>'

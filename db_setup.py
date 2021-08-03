@@ -29,7 +29,7 @@ TABLES['articles'] = (
 #     cur = db.cursor()
 #     cur.execute('create database if not exists {} default character set utf8;'.format(DB_NAME))
 #     print('Database {} created!'.format(DB_NAME))
-#     cur.close()
+
 
 def create_tables():
     cur = db.cursor()
@@ -45,4 +45,3 @@ def create_tables():
                 print('Table already exists!')
             else:
                 print(err.msg)
-    cur.close()
