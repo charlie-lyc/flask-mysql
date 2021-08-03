@@ -1,10 +1,19 @@
-# config.py # 내 Repository로 보낼 때는 포함하지 않고, Deploy 때는 포함
-# database.py  # 내 Repository로 보낼 때는 포함하지 않고, Deploy 때는 포함
 data.py
 
-lib/
+# config.py # Git 보낼 때는 포함하지 않고, Deploy 때는 포함
+# database.py  # Git 보낼 때는 포함하지 않고, Deploy 때는 포함
+# db_setup.py  # Git 보낼 때는 포함하지 않고, Deploy 때는 포함
 
 #################
+
+bin/
+
+lib/
+Procfile
+.cfg
+
+#################
+
 venv/
 
 *.pyc
