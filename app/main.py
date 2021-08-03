@@ -31,13 +31,13 @@ app.config['SECRET_KEY'] = SECRET_KEY
 ###########################################################
 ### mysql-connector-python 이용
 
-from db_setup import create_tables#, create_database 
+# from db_setup import create_tables#, create_database 
 from database import db
 
 ######### 최초 한번만 실행하고 더 이상 실행되지 않게!!! #############
 ### 설치 후 커멘트 처리
 # create_database()
-create_tables()
+# create_tables()
 ###########################################################
 
 ### Config WTF CSRF : Reference from https://flask-wtf.readthedocs.io/en/0.15.x/csrf/
@@ -56,7 +56,6 @@ csrf = CSRFProtect(app)
 ######################################################################################################################
 ######################################################################################################################
 @app.route('/')
-@app.route('/index')
 def index():
     # return 'Hello World!'
     # return '<h1>Hello World!<h1>'
@@ -81,10 +80,10 @@ def articles():
     # if result > 0:
     if len(data) > 0:
         Articles = reversed(data)
-        cur.close()
+        # cur.close()
         return render_template('articles.html', articles=Articles, navbar_articles='active')
     else:
-        cur.close()
+        # cur.close()
         flash('No articles found.', 'info')
         return render_template('articles.html', navbar_articles='active')
     ######################################################################
@@ -103,7 +102,7 @@ def article(id):
     cur = db.cursor()
     cur.execute('select * from articles where id=%s', [id])
     found_article = cur.fetchone()
-    cur.close()
+    # cur.close()
     ######################################################################
     return render_template('article.html', article=found_article)
 
@@ -148,7 +147,7 @@ def register():
         # mysql.connection.commit()
         db.commit()
         ### Close connection
-        cur.close()
+        # cur.close()
         ### Flashing message : flash(message, category)
         flash('You are successfully registered and can log in.', 'success') # Flash Message
         # return redirect('/login') # redirect(location, code, response)
@@ -190,7 +189,7 @@ def login():
             flash('Your email NOT exists.', 'danger')
             # error = 'Your email NOT exists!'
             # return render_template('login.html', form=login_form, navbar_login='active', error=error)
-        cur.close()
+        # cur.close()
     return render_template('login.html', form=login_form, navbar_login='active')
 
 ### 세션을 이용해 자연스럽게 로그인/로그아웃 상태로 전환될수 있음
@@ -209,10 +208,10 @@ def dashboard():
     # if result > 0:
     if len(data) > 0:
         Articles = reversed(data)
-        cur.close()
+        # cur.close()
         return render_template('dashboard.html', articles=Articles, navbar_dashboard='active')
     else:
-        cur.close()
+        # cur.close()
         flash('No articles found.', 'info')
         return render_template('dashboard.html', navbar_dashboard='active')
 
@@ -235,7 +234,7 @@ def add_article():
         cur.execute('insert into articles (author, title, body) values (%s, %s, %s);', [session['username'], title, body])
         # mysql.connection.commit()
         db.commit()
-        cur.close()
+        # cur.close()
         flash('You created new article.', 'success')
         return redirect(url_for('articles'))
     return render_template('add_article.html', form=article_form, navbar_add_article='active')
@@ -259,11 +258,11 @@ def edit_article(id):
             cur.execute('update articles set author=%s, title=%s, body=%s where id=%s;', [session['username'], title, body, id])
             # mysql.connection.commit()
             db.commit()
-            cur.close()
+            # cur.close()
             flash('You updated the article.', 'success')
             return redirect(url_for('articles'))
         else:
-            cur.close()
+            # cur.close()
             flash('Unauthorized Request!', 'danger')
             return redirect(url_for('dashboard'))
     return render_template('edit_article.html', form=edit_form, article=data)
@@ -285,7 +284,7 @@ def delete_article(id):
         cur.execute('delete from articles where id=%s', [id])
         # mysql.connection.commit()
         db.commit()
-        cur.close()
+        # cur.close()
         flash('You removed the article.', 'success')
     else:
         flash('Unauthorized Request!', 'danger')
